@@ -13,7 +13,7 @@ After some experimenting I found that if I copy photos from my camera's memory c
 Since I am renaming files based on the date created by the device that captured the image, this device's date should be correctly set. (For the next release I want to add more options to manually set the date)
 
 ** Usage
-   [[{{{./screenshots/2014-07-05-135037_818x747_scrot.png}}}]]
+   [[./screenshots/2014-07-05-135037_818x747_scrot.png]]
 
 ** GNU GPL
-This program is licensed under [GNU GPL](http://www.gnu.org/licenses/gpl-3.0.txt)
+This program is licensed under [(http://www.gnu.org/licenses/gpl-3.0.txt)[GNU GPL]]
