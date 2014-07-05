@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'photo_rename'
+
+def main()
+    photo_rename = Photo_rename.new()
+    ARGV.length == 0 ? print_opts = true : print_opts = false
+    opts = photo_rename.parse_options(print_opts)
+
+    ARGV.each do |arg|
+        map = photo_rename.name_map(arg)
+        photo_rename.print_replace_names(arg, map)
+    end
+
+end
+
+main()
+
