@@ -1,0 +1,19 @@
+* Photo Renamer
+** What the script does
+This script is fairly specific. It renames all JPG files (technically files with a .jpg or .jpeg extenstion) in a given directory to the form IMG_*yyyymmdd*_*hhmmss*.jpg
+
+** Rationale
+The naming pattern described above is the naming pattern used by the stock Android camera.
+Renaming photos taken with other devices to this scheme allows me to seamlessly merge photos into a single directory and maintain consistent file names.
+
+** mtime
+After some experimenting I found that if I copy photos from my camera's memory card to my PC the "Modify Time" field gets preserved. Therefore I use this field as the basis for renaming the files. Obviously if you modify the file before renaming the mtime field will get updated and your file name will be wrong, so be warned!
+
+*IMPORTANT NOTE*
+Since I am renaming files based on the date created by the device that captured the image, this device's date should be correctly set. (For the next release I want to add more options to manually set the date)
+
+** Usage
+   [[./screenshots/2014-07-05-135037_818x747_scrot.png]]
+
+** GNU GPL
+This program is licensed under [(http://www.gnu.org/licenses/gpl-3.0.txt)[GNU GPL]]
