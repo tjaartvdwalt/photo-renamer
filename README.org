@@ -1,4 +1,5 @@
 * Photo Renamer
+ 
 ** What the script does
 This script is fairly specific. It renames all JPG files (technically files with a .jpg or .jpeg extenstion) in a given directory to the form IMG_*yyyymmdd*_*hhmmss*.jpg
 
@@ -12,8 +13,26 @@ After some experimenting I found that if I copy photos from my camera's memory c
 *IMPORTANT NOTE*
 Since I am renaming files based on the date created by the device that captured the image, this device's date should be correctly set. (For the next release I want to add more options to manually set the date)
 
+** Install
+The easiest way to install the script is by using rubygems.
+#+begin_src bash
+gem install photo_rename
+#+end_src
+
+[[./screenshots/install.png]]
+
 ** Usage
-   [[./screenshots/2014-07-05-135037_818x747_scrot.png]]
+#+begin_src bash
+photo_rename /photo_directory/
+#+end_src
+
+[[./screenshots/example.png]]
+** Release notes
+*** 0.0.4
+- Do not rename files that are already in the correct format.
+
+*** 0.0.1 - 0.0.3
+- Sort out teething problems.
 
 ** GNU GPL
 This program is licensed under [(http://www.gnu.org/licenses/gpl-3.0.txt)[GNU GPL]]
