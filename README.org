@@ -23,7 +23,7 @@ gem install photo_rename
 
 ** Usage
 #+begin_src bash
-photo_rename /photo_directory/
+photo_rename photo_directory
 #+end_src
 
 [[./screenshots/example.png]]
@@ -32,7 +32,7 @@ photo_rename /photo_directory/
 - Do not rename files that are already in the correct format.
 
 *** 0.0.1 - 0.0.3
-- Sort out teething problems.
+- Sort out teething problems with gem.
 
 ** GNU GPL
 This program is licensed under [(http://www.gnu.org/licenses/gpl-3.0.txt)[GNU GPL]]

@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["github@tjaart.co.za"]
   spec.summary     = "Photo renamer"
   spec.description = "Rename JPG images in a directory based on the date in the file's mtime field. By default the target file names are in the same format as those created by Android devices."
-  spec.homepage    ='https://github.com/tjaartvdwalt/photo-renamer'
+  spec.homepage    ='https://github.com/tjaartvdwalt/photo_rename'
   spec.license       = "GNU GPL"
 
   spec.files         = `git ls-files -z`.split("\x0")

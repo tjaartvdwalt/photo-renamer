@@ -30,20 +30,28 @@ class Photo_rename
   end
 
   def name_map(dir_path)
-    name_map = {}
+    no_change_array = []
+    change_map = {}
     Dir.glob("#{dir_path}/*.[jJ][pP][gG]").sort.each do |f|
-      mdate = File.mtime(f)
-      name_map[f] = "#{dir_path}/#{new_name(mdate)}"
+      if /[Ii][Mm][Gg]\_[0-9]{8}\_[0-9]{6}\.[Jj][Pp][Gg]/.match(f) == nil
+        mdate = File.mtime(f)
+        change_map[f] = "#{dir_path}/#{new_name(mdate)}"
+      else
+        no_change_array.push(f)
+      end
     end
-    return name_map
+    return [no_change_array, change_map]
   end
 
   def print_replace_names(dir_path, map)
-    puts "We will be renaming the following image files"
-    ap map
+    puts "These files are in the correct format and will remain unchanged:"
+    ap map[0], :index => false
+    puts ""
+    puts "These files will be renamed as follows:"
+    ap map[1]
     puts "Are you sure you want to continue renaming these files (Y/N)"
     if STDIN.gets.chomp.downcase == "y"
-      map.each() do |key, value|
+      map[1].each() do |key, value|
         File.rename("#{key}", "#{value}")
       end
     end
