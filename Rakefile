@@ -16,12 +16,16 @@ Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
   gem.name = "photo_rename"
   gem.homepage = "http://github.com/tjaartvdwalt/photo_rename"
-  gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.license = "GPL"
+  gem.summary = "Photo renamer"
+  gem.description =  "Rename JPG images in a directory based on the date in the file's mtime field. By default the target file names are in the same format as those created by Android devices."
   gem.email = "github@tjaart.co.za"
   gem.authors = ["Tjaart van der Walt"]
   # dependencies defined in Gemfile
+
+  # include the file runner
+  gem.files.include 'bin/*'
+  
 end
 Jeweler::RubygemsDotOrgTasks.new
 
