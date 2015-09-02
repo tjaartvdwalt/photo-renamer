@@ -1,6 +1,6 @@
 # Photo Renamer #
 
-![img](//badge.fury.io/rb/photo_rename.svg) 
+![img](https://badge.fury.io/for/rb/photo_rename) 
 
 ## What the script does ##
 
@@ -16,6 +16,7 @@ The naming pattern described above is the naming pattern used by the stock Andro
 Per default we now use the JPEG `exif meta data` to find the creation date of the file. This gives much more reliable results than using the `mtime` of the file.
 
 The case that convinced me this change was necessary:
+
 I wanted to rename images that was recovered after being deleted. The recovery process changed the `mtime` of the files, but the `meta data` remained intact. 
 
 ### mtime ###
@@ -48,9 +49,11 @@ apt-get install libimage-exiftool-perl
 ```
 
 **OSX**
+
 http://www.sno.phy.queensu.ca/~phil/exiftool/ExifTool-10.00.dmg
 
 **Windows**
+
 http://www.sno.phy.queensu.ca/~phil/exiftool/exiftool-10.00.zip
 
 
