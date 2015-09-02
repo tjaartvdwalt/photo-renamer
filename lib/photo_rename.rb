@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # photo_renamer renames all .jpg files in a given directory to the form IMG_*yyyymmdd*_*hhmmss*.jpg
-# Copyright (C) 2013  Tjaart van der Walt
+# Copyright (C) 2015  Tjaart van der Walt
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 require 'optparse'
 require 'rubygems'
 require 'awesome_print'
+require 'mini_exiftool'
 
 class Photo_rename
   def new_name(mdate)
@@ -29,12 +30,19 @@ class Photo_rename
     return ret_string
   end
 
-  def name_map(dir_path)
+  def name_map(dir_path, options)
     no_change_array = []
     change_map = {}
     Dir.glob("#{dir_path}/*.[jJ][pP][gG]").sort.each do |f|
       if /[Ii][Mm][Gg]\_[0-9]{8}\_[0-9]{6}\.[Jj][Pp][Gg]/.match(f) == nil
-        mdate = File.mtime(f)
+
+        if not options[:file] then
+          photo = MiniExiftool.new f
+          mdate = photo[:DateTimeOriginal]
+          puts mdate          
+        else 
+          mdate = File.mtime(f)
+        end
         change_map[f] = "#{dir_path}/#{new_name(mdate)}"
       else
         no_change_array.push(f)
@@ -63,9 +71,14 @@ class Photo_rename
     optparse = OptionParser.new do|opts|
       opts.banner = "Usage: photo_renamer.rb [options] dir1 [dir2 ...]"
 
-      options[:batch] = false
-      opts.on( '-b', '--batch', 'Batch mode. Will not ask confirmation before renaming.' ) do
-        options[:batch] = true
+      # options[:batch] = false
+      # opts.on( '-b', '--batch', 'Batch mode. Will not ask confirmation before renaming.' ) do
+      #   options[:batch] = true
+      # end
+
+      options[:file] = false
+      opts.on( '-f', '--filedate', 'Use the file creation date, instead of the exif meta data' ) do
+        options[:file] = true
       end
 
       opts.on( '-h', '--help', 'Display this screen' ) do
