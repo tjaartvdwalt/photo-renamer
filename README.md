@@ -4,7 +4,7 @@
 
 ## What the script does ##
 
-This script is fairly specific. It renames all JPG files (technically files with a .jpg or .jpeg extenstion) in a given directory to the form IMG<sub>\*</sub>yyyymmdd\*<sub>\*</sub>hhmmss\*.jpg
+This script is fairly specific. It renames all JPG files (technically files with a .jpg or .jpeg extenstion) in a given directory to the form IMG_yyyymmdd_hhmmss.jpg
 
 ## Rationale ##
 
@@ -13,13 +13,13 @@ The naming pattern described above is the naming pattern used by the stock Andro
 ## Extracting the date ##
 
 ### exif meta data ###
-Per default we now use the JPEG `exif meta data` to find the creation date of the file. This gives much more reliable results than using the `mtime` of the file.
+Per default we now use the JPEG *exif meta data* to find the creation date of the file. This gives much more reliable results than using the *mtime* of the file.
 
 Read [this](http://www.tjaart.co.za/software/2015/09/02/photo_rename/) blog entry if you are interested in why this was an important change for me.
 
 ### mtime ###
 
-It is still possible to find the date with `mtime` using the `-f` command line switch, but using the `exif metadata` is the highly preferred method. 
+It is still possible to find the date with *mtime* using the `-f` command line switch, but using the *exif metadata* is the highly preferred method. 
 
 ~~After some experimenting I found that if I copy photos from my camera's memory card to my PC the "Modify Time" field gets preserved. Therefore I use this field as the basis for renaming the files. Obviously if you modify the file before renaming the mtime field will get updated and your file name will be wrong, so be warned!~~
 
@@ -70,7 +70,10 @@ The easiest way to install the script is by using rubygems.
 ![img](./screenshots/example.png)
 
 
-## Release notes ##
+## Change log ##
+
+### 0.1.1 ###
+-  Remove some debug output
 
 ### 0.1.0 ###
 
