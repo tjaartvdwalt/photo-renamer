@@ -1,6 +1,6 @@
 # Photo Renamer #
 
-![img](https://badge.fury.io/for/rb/photo_rename) 
+[![Gem Version](https://badge.fury.io/rb/photo_rename.svg)](http://badge.fury.io/rb/photo_rename)
 
 ## What the script does ##
 
@@ -8,7 +8,7 @@ This script is fairly specific. It renames all JPG files (technically files with
 
 ## Rationale ##
 
-The naming pattern described above is the naming pattern used by the stock Android camera.Renaming photos taken with other devices to this scheme allows me to seamlessly merge photos into a single directory and maintain consistent file names.
+The naming pattern described above is the naming pattern used by the stock Android camera. Renaming photos taken with other devices to this scheme allows me to seamlessly merge photos into a single directory and maintain consistent file names.
 
 ## Extracting the date ##
 
