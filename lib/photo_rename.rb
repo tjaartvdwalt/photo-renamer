@@ -39,7 +39,6 @@ class Photo_rename
         if not options[:file] then
           photo = MiniExiftool.new f
           mdate = photo[:DateTimeOriginal]
-          puts mdate          
         else 
           mdate = File.mtime(f)
         end
