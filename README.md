@@ -15,9 +15,7 @@ The naming pattern described above is the naming pattern used by the stock Andro
 ### exif meta data ###
 Per default we now use the JPEG `exif meta data` to find the creation date of the file. This gives much more reliable results than using the `mtime` of the file.
 
-The case that convinced me this change was necessary:
-
-I wanted to rename images that was recovered after being deleted. The recovery process changed the `mtime` of the files, but the `meta data` remained intact. 
+Read [this](http://www.tjaart.co.za/software/2015/09/02/photo_rename/) blog entry if you are interested in why this was an important change for me.
 
 ### mtime ###
 
