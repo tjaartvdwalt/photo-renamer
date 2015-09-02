@@ -4,7 +4,7 @@
 
 ## What the script does ##
 
-This script is fairly specific. It renames all JPG files (technically files with a .jpg or .jpeg extenstion) in a given directory to the form IMG_yyyymmdd_hhmmss.jpg
+This script is fairly specific. It renames all JPG files (technically files with a .jpg or .jpeg extenstion) in a given directory to the form `IMG_yyyymmdd_hhmmss.jpg`
 
 ## Rationale ##
 
