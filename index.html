@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Photo rename : rename the .jpg files in a directory to have the naming pattern IMG_yyyymmdd_hhmmss.jpg">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Photo rename</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/tjaartvdwalt/photo_rename">View on GitHub</a>
+
+          <h1 id="project_title">Photo rename</h1>
+          <h2 id="project_tagline">rename the .jpg files in a directory to have the naming pattern IMG_yyyymmdd_hhmmss.jpg</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/tjaartvdwalt/photo_rename/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/tjaartvdwalt/photo_rename/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="photo-renamer" class="anchor" href="#photo-renamer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Photo Renamer</h1>
+
+<p><a href="http://badge.fury.io/rb/photo_rename"><img src="https://badge.fury.io/rb/photo_rename.svg" alt="Gem Version"></a></p>
+
+<h2>
+<a id="what-the-script-does" class="anchor" href="#what-the-script-does" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What the script does</h2>
+
+<p>This script is fairly specific. It renames all JPG files (technically files with a .jpg or .jpeg extenstion) in a given directory to the form <code>IMG_yyyymmdd_hhmmss.jpg</code></p>
+
+<h2>
+<a id="rationale" class="anchor" href="#rationale" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rationale</h2>
+
+<p>The naming pattern described above is the naming pattern used by the stock Android camera. Renaming photos taken with other devices to this scheme allows me to seamlessly merge photos into a single directory and maintain consistent file names.</p>
+
+<h2>
+<a id="extracting-the-date" class="anchor" href="#extracting-the-date" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Extracting the date</h2>
+
+<h3>
+<a id="exif-meta-data" class="anchor" href="#exif-meta-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>exif meta data</h3>
+
+<p>Per default we now use the JPEG <em>exif meta data</em> to find the creation date of the file. This gives much more reliable results than using the <em>mtime</em> of the file.</p>
+
+<p>Read <a href="http://www.tjaart.co.za/software/2015/09/02/photo_rename/">this</a> blog entry if you are interested in why this was an important change for me.</p>
+
+<h3>
+<a id="mtime" class="anchor" href="#mtime" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>mtime</h3>
+
+<p>It is still possible to find the date with <em>mtime</em> using the <code>-f</code> command line switch, but using the <em>exif metadata</em> is the highly preferred method. </p>
+
+<p><del>After some experimenting I found that if I copy photos from my camera's memory card to my PC the "Modify Time" field gets preserved. Therefore I use this field as the basis for renaming the files. Obviously if you modify the file before renaming the mtime field will get updated and your file name will be wrong, so be warned!</del></p>
+
+<p><del><strong>IMPORTANT NOTE</strong></del>
+<del>Since I am renaming files based on the date created by the device that captured the image, this device's date should be correctly set. (For the next release I want to add more options to manually set the date)</del></p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<h3>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<p>Since version <code>0.1.0</code> we use exif metadata to get the file creation date by default. We use the ruby library <code>mini_exiftool</code> which has a dependency on <a href="http://www.sno.phy.queensu.ca/%7Ephil/exiftool/">exiftool</a>.</p>
+
+<p><code>exiftool</code> should be easily installable through the package manager of most distributions.</p>
+
+<p><strong>Arch Linux</strong></p>
+
+<div class="highlight highlight-source-shell"><pre>pacman -S perl-image-exiftool</pre></div>
+
+<p><strong>Ubuntu</strong></p>
+
+<div class="highlight highlight-source-shell"><pre>apt-get install libimage-exiftool-perl</pre></div>
+
+<p><strong>OSX</strong></p>
+
+<p><a href="http://www.sno.phy.queensu.ca/%7Ephil/exiftool/ExifTool-10.00.dmg">http://www.sno.phy.queensu.ca/~phil/exiftool/ExifTool-10.00.dmg</a></p>
+
+<p><strong>Windows</strong></p>
+
+<p><a href="http://www.sno.phy.queensu.ca/%7Ephil/exiftool/exiftool-10.00.zip">http://www.sno.phy.queensu.ca/~phil/exiftool/exiftool-10.00.zip</a></p>
+
+<h3>
+<a id="ruby-gems" class="anchor" href="#ruby-gems" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ruby Gems</h3>
+
+<p>The easiest way to install the script is by using rubygems.</p>
+
+<pre><code>gem install photo_rename
+</code></pre>
+
+<p><img src="./screenshots/install.png" alt="img"></p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<pre><code>photo_rename photo_directory
+</code></pre>
+
+<p><img src="./screenshots/example.png" alt="img"></p>
+
+<h2>
+<a id="change-log" class="anchor" href="#change-log" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Change log</h2>
+
+<h3>
+<a id="011" class="anchor" href="#011" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>0.1.1</h3>
+
+<ul>
+<li> Remove some debug output</li>
+</ul>
+
+<h3>
+<a id="010" class="anchor" href="#010" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>0.1.0</h3>
+
+<ul>
+<li>  Use mini_exiftool to get the date from image metadata</li>
+<li>  Removed <code>-b</code> command line option, as this is not implemented yet</li>
+</ul>
+
+<h3>
+<a id="004" class="anchor" href="#004" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>0.0.4</h3>
+
+<ul>
+<li>  Do not rename files that are already in the correct format.</li>
+</ul>
+
+<h3>
+<a id="001---003" class="anchor" href="#001---003" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>0.0.1 - 0.0.3</h3>
+
+<ul>
+<li>  Sort out teething problems with gem.</li>
+</ul>
+
+<h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h3>
+
+<p>This program is licensed under [(<a href="http://www.gnu.org/licenses/gpl-3.0.txt">http://www.gnu.org/licenses/gpl-3.0.txt</a>)[GNU GPL]]</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Photo rename maintained by <a href="https://github.com/tjaartvdwalt">tjaartvdwalt</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
